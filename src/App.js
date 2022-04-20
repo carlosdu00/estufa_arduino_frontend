@@ -1,21 +1,36 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Appbar from "./components/Appbar";
-import Table from "./components/Table";
-import MatDataTable from "./components/MatDataTable"
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-<link
-  rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-/>;
+const App = () => {
+  const [leitura, setLeitura] = useState([]);
 
-function App() {
+  const getLeituraData = async () => {
+    try {
+      const data = await axios.get(
+        "https://estufaarduino.herokuapp.com/sistema/leituras"
+      );
+      console.log(data.data);
+      setLeitura(data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    getLeituraData();
+  }, []);
   return (
     <div className="App">
-      <Appbar />
-      <MatDataTable />
+      {leitura.map((Leitura)=>{
+        return (
+          <p>
+            {Leitura._id}
+          </p>
+        )
+      })}
     </div>
   );
-}
+};
 
 export default App;
