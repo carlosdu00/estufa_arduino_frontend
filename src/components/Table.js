@@ -5,85 +5,98 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import React, { useEffect, useState } from "react";
-import api from "../services/api";
+import * as React from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+import Get_leitura from "../services/get_leitura";
 
-export default function BasicTable() {
-  const [leitura, setLeitura] = useState();
 
-  useEffect(() => {
-    api
-      .get("/sistema/leituras")
-      .then((response) => setLeitura(response.data))
-      .catch((err) => {
-        console.error("ops! ocorreu um erro" + err);
-      });
-  }, []);
-
-  function createData(
-    data_hora,
-    temperatura_ar,
-    humidade_ar,
-    temperatura_solo,
-    humidade_solo,
-    luminosidade
-  ) {
-    return {
-      data_hora,
-      temperatura_ar,
-      humidade_ar,
-      temperatura_solo,
-      humidade_solo,
-      luminosidade,
-    };
-  }
-
-  leitura?.leituras?.docs?.map((item) => (
-    <ul>
-      <li>id: {item?._id}</li>
-      <li>temperatura_ar: {item?.temperatura_ar}</li>
-      <li>humidade_ar: {item?.humidade_ar}</li>
-      <li>temperatura_solo: {item?.temperatura_solo}</li>
-      <li>humidade_solo: {item?.humidade_solo}</li>
-      <li>luminosidade: {item?.luminosidade}</li>
-      <li>data_hora: {item?.data_hora}</li>
-    </ul>
-  ))
-
-  const rows = leitura.values.map((arr) => createData(...arr))
-  
-
+export default function ButtonAppBar() {
+  let leitura= Get_leitura()
+  // var date;
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>hora</TableCell>
-            <TableCell align="right">temperatura do ar</TableCell>
-            <TableCell align="right">humidade do ar&nbsp;</TableCell>
-            <TableCell align="right">temp do solo&nbsp;</TableCell>
-            <TableCell align="right">humidade do solo&nbsp;</TableCell>
-            <TableCell align="right">luminosidade&nbsp;</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row._id}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.data_hora}
-              </TableCell>
-              <TableCell align="right">{row.temperatura_ar}</TableCell>
-              <TableCell align="right">{row.humidade_ar}</TableCell>
-              <TableCell align="right">{row.temperatura_solo}</TableCell>
-              <TableCell align="right">{row.humidade_solo}</TableCell>
-              <TableCell align="right">{row.luminosidade}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <div
+      style={{
+        paddingLeft: "3%",
+        paddingRight: "3%",
+        paddingTop: "3%",
+        paddingBottom: "3%",
+      }}
+    >
+      <Paper
+        sx={{
+          width: "100%",
+          overflow: "hidden",
+          justify: "center",
+          alignItems: "center",
+        }}
+      >
+        {/* sx={{ maxHeight: 440  }} component={Paper} */}
+        <TableContainer
+          sx={{
+            maxHeight: 400,
+            "&::-webkit-scrollbar": {
+              width: 10,
+              height: 10,
+            },
+            "&::-webkit-scrollbar-track": {
+              backgroundColor: "gray",
+            },
+            "&::-webkit-scrollbar-thumb": {
+              backgroundColor: "#1976d2",
+              borderRadius: 2,
+            },
+          }}
+          component={Paper}
+        >
+          <Table
+            size="small"
+            stickyHeader
+            aria-label="sticky table"
+            sx={{ maxWidth: 1500 }}
+          >
+            <TableHead>
+              <TableRow>
+                {/* <TableCell> ID</TableCell> */}
+                <TableCell> Dia</TableCell>
+                <TableCell> Hora</TableCell>
+                <TableCell> Temperatura do ar</TableCell>
+                <TableCell> Humidade do ar</TableCell>
+                <TableCell> Temperatura do solo</TableCell>
+                <TableCell> Humidade do solo</TableCell>
+                <TableCell> Luminosidade</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+             
+              {leitura.map((item, index) => (
+                //{date = new Date(item.data_hora.toString())}
+                <TableRow
+                  style={
+                    index % 2
+                      ? { background: "#F6F6F6" }
+                      : { background: "#FFFFFF" }
+                  }
+                >
+                  {/* <TableCell> {item._id}</TableCell> */}
+                  {/* <TableCell> {item.data_hora}</TableCell> */}
+                  <TableCell>
+                    {item.data_hora.substring(8, 10) +
+                      "/" +
+                      item.data_hora.substring(5, 7)}
+                  </TableCell>
+                  <TableCell> {item.data_hora.substring(11, 19)}</TableCell>
+                  <TableCell> {Math.trunc(item.temperatura_ar)}°C</TableCell>
+                  <TableCell> {Math.trunc(item.humidade_ar)}%</TableCell>
+                  <TableCell> {Math.trunc(item.temperatura_solo)}°C</TableCell>
+                  <TableCell> {Math.trunc(item.humidade_solo)}%</TableCell>
+                  <TableCell> {item.luminosidade}%</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Paper>
+    </div>
   );
 }
