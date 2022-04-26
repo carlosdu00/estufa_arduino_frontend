@@ -5,22 +5,20 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import * as React from 'react';
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
+import * as React from "react";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 import Get_leitura from "../services/get_leitura";
+import Format_date_time from "../services/Format_date_time";
 
-
-export default function ButtonAppBar() {
-  let leitura= Get_leitura()
+export default function MakeTable() {
+  let leitura = Get_leitura();
   // var date;
   return (
     <div
       style={{
-        paddingLeft: "3%",
-        paddingRight: "3%",
-        paddingTop: "3%",
-        paddingBottom: "3%",
+        marginTop: "3%",
+        marginBottom: "3%",
       }}
     >
       <Paper
@@ -68,7 +66,6 @@ export default function ButtonAppBar() {
               </TableRow>
             </TableHead>
             <TableBody>
-             
               {leitura.map((item, index) => (
                 //{date = new Date(item.data_hora.toString())}
                 <TableRow
@@ -80,12 +77,8 @@ export default function ButtonAppBar() {
                 >
                   {/* <TableCell> {item._id}</TableCell> */}
                   {/* <TableCell> {item.data_hora}</TableCell> */}
-                  <TableCell>
-                    {item.data_hora.substring(8, 10) +
-                      "/" +
-                      item.data_hora.substring(5, 7)}
-                  </TableCell>
-                  <TableCell> {item.data_hora.substring(11, 19)}</TableCell>
+                  <TableCell>{Format_date_time(item.data_hora, "dd'/'MM")}</TableCell>
+                  <TableCell>{Format_date_time(item.data_hora, "HH:mm")}</TableCell>
                   <TableCell> {Math.trunc(item.temperatura_ar)}°C</TableCell>
                   <TableCell> {Math.trunc(item.humidade_ar)}%</TableCell>
                   <TableCell> {Math.trunc(item.temperatura_solo)}°C</TableCell>

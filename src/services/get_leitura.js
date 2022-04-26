@@ -19,5 +19,5 @@ export default function Getleitura() {
   useEffect(() => {
     getLeituraData();
   }, []);
-  return leitura
+  return leitura;
 }
