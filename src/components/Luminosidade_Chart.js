@@ -12,7 +12,7 @@ import {
 
 import { Line } from "react-chartjs-2";
 
-import Get_leitura from "../services/get_leitura";
+import { getLeituraData } from "../services/get_leitura";
 
 import Format_date_time from "../services/Format_date_time";
 
@@ -27,7 +27,19 @@ ChartJS.register(
 );
 
 const LineChart = () => {
-  let leitura = Get_leitura();
+  const [leitura, setLeitura] = useState([]);
+
+  const buscarleituras = async () => {
+    const data = await getLeituraData();
+    setLeitura(data);
+  };
+  useEffect(() => {
+    buscarleituras();
+    setInterval(async () => {
+      buscarleituras();
+    }, 10000); //10 segundos
+  }, []);
+
   const [chart, setChart] = useState({});
   var label_data_hora = [];
 
@@ -39,11 +51,11 @@ const LineChart = () => {
 
   //console.log("chart", chart);
   var data = {
-    labels: label_data_hora,
+    labels: label_data_hora.reverse(),
     datasets: [
       {
         label: `Luminosidade`,
-        data: leitura.map((x) => x.luminosidade),
+        data: leitura.map((x) => x.luminosidade).reverse(),
         backgroundColor: ["rgb(221,163,47)"],
         borderColor: ["rgb(221,163,47)"],
         borderWidth: 1,
@@ -68,7 +80,7 @@ const LineChart = () => {
         marginBottom: "3%",
         marginRight: "3%",
         marginLeft: "3%",
-        display:"flex",
+        display: "flex",
         flex: "100%",
       }}
     >

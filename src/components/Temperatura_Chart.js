@@ -12,7 +12,7 @@ import {
 
 import { Line } from "react-chartjs-2";
 
-import Get_leitura from "../services/get_leitura";
+import {getLeituraData} from "../services/get_leitura";
 
 import Format_date_time from "../services/Format_date_time";
 
@@ -27,7 +27,20 @@ ChartJS.register(
 );
 
 const LineChart = () => {
-  let leitura = Get_leitura();
+  const [leitura, setLeitura] = useState([]);
+
+  const buscarleituras= async () => { 
+    const data = await getLeituraData();
+      setLeitura(data)
+  }
+  useEffect(() => {
+    buscarleituras()
+    setInterval(async () => {
+      buscarleituras()
+    }, 10000);//10 segundos
+  }, []);
+
+  
   const [chart, setChart] = useState({});
   var label_data_hora = [];
 
@@ -39,18 +52,18 @@ const LineChart = () => {
 
   //console.log("chart", chart);
   var data = {
-    labels: label_data_hora,
+    labels: label_data_hora.reverse(),
     datasets: [
       {
         label: `Temperatura do ar`,
-        data: leitura.map((x) => x.temperatura_ar),
+        data: leitura.map((x) => x.temperatura_ar).reverse(),
         backgroundColor: ["rgba(54, 162, 235, 1)"],
         borderColor: ["rgba(54, 162, 235, 1)"],
         borderWidth: 1,
       },
       {
         label: `Temperatura do solo`,
-        data: leitura.map((x) => x.temperatura_solo),
+        data: leitura.map((x) => x.temperatura_solo).reverse(),
         backgroundColor: ["rgb(57,43,38)"],
         borderColor: ["rgb(57,43,38)"],
         borderWidth: 1,

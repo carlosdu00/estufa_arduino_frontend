@@ -5,14 +5,23 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import * as React from "react";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
-import Get_leitura from "../services/get_leitura";
 import Format_date_time from "../services/Format_date_time";
+import React, { useState, useEffect } from "react";
+import { getLeituraData } from "../services/get_leitura";
 
 export default function MakeTable() {
-  let leitura = Get_leitura();
+  const [leitura, setLeitura] = useState([]);
+
+  const buscarleituras = async () => {
+    const data = await getLeituraData();
+    setLeitura(data);
+  };
+  useEffect(() => {
+    buscarleituras();
+    setInterval(async () => {
+      buscarleituras();
+    }, 10000); //10 segundos
+  }, []);
   // var date;
   return (
     <div
@@ -77,8 +86,12 @@ export default function MakeTable() {
                 >
                   {/* <TableCell> {item._id}</TableCell> */}
                   {/* <TableCell> {item.data_hora}</TableCell> */}
-                  <TableCell>{Format_date_time(item.data_hora, "dd'/'MM")}</TableCell>
-                  <TableCell>{Format_date_time(item.data_hora, "HH:mm")}</TableCell>
+                  <TableCell>
+                    {Format_date_time(item.data_hora, "dd'/'MM")}
+                  </TableCell>
+                  <TableCell>
+                    {Format_date_time(item.data_hora, "HH:mm")}
+                  </TableCell>
                   <TableCell> {Math.trunc(item.temperatura_ar)}°C</TableCell>
                   <TableCell> {Math.trunc(item.humidade_ar)}%</TableCell>
                   <TableCell> {Math.trunc(item.temperatura_solo)}°C</TableCell>
