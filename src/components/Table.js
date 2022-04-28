@@ -75,7 +75,7 @@ export default function MakeTable() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {leitura.map((item, index) => (
+              {leitura.map((item, index) => (  
                 //{date = new Date(item.data_hora.toString())}
                 <TableRow
                   style={
@@ -95,8 +95,8 @@ export default function MakeTable() {
                   <TableCell> {Math.trunc(item.temperatura_ar)}°C</TableCell>
                   <TableCell> {Math.trunc(item.humidade_ar)}%</TableCell>
                   <TableCell> {Math.trunc(item.temperatura_solo)}°C</TableCell>
-                  <TableCell> {Math.trunc(item.humidade_solo)}%</TableCell>
-                  <TableCell> {item.luminosidade}%</TableCell>
+                  <TableCell> {item.humidade_solo <0 ? 0 : Math.trunc(item.humidade_solo)}%</TableCell>
+                  <TableCell> {item.luminosidade}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
