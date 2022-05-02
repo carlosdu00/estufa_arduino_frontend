@@ -54,15 +54,15 @@ const LineChart = () => {
     labels: label_data_hora.reverse(),
     datasets: [
       {
-        label: `Temperatura do ar`,
-        data: leitura.map((x) => Math.trunc(x.temperatura_ar)).reverse(),
+        label: `Umidade do ar`,
+        data: leitura.map((x) => Math.trunc(x.umidade_ar)).reverse(),
         backgroundColor: ["rgba(54, 162, 235, 1)"],
         borderColor: ["rgba(54, 162, 235, 1)"],
         borderWidth: 1,
       },
       {
-        label: `Temperatura do solo`,
-        data: leitura.map((x) => Math.trunc(x.temperatura_solo)).reverse(),
+        label: `Umidade do solo`,
+        data: leitura.map((x) => Math.trunc(x.umidade_solo)).reverse(),
         backgroundColor: ["rgb(57,43,38)"],
         borderColor: ["rgb(57,43,38)"],
         borderWidth: 1,
