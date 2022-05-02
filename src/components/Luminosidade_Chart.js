@@ -76,15 +76,12 @@ const LineChart = () => {
   return (
     <div
       style={{
-        marginTop: "3%",
         marginBottom: "3%",
-        marginRight: "3%",
-        marginLeft: "3%",
         display: "flex",
         flex: "100%",
       }}
     >
-      <Line data={data} height={300} options={options} />
+      <Line data={data} height={200} options={options} />
     </div>
   );
 };

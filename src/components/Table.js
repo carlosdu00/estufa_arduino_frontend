@@ -27,7 +27,6 @@ export default function MakeTable() {
     <div
       style={{
         marginTop: "3%",
-        marginBottom: "3%",
       }}
     >
       <Paper
@@ -41,7 +40,7 @@ export default function MakeTable() {
         {/* sx={{ maxHeight: 440  }} component={Paper} */}
         <TableContainer
           sx={{
-            maxHeight: 400,
+            maxHeight: 600,
             "&::-webkit-scrollbar": {
               width: 10,
               height: 10,

@@ -10,16 +10,27 @@ const App = () => {
       <Appbar />
       <div
         style={{
-          display: "flex",
-          flexDirection: "row",
-          flex: "100%",
+          paddingLeft: "3%",
+          paddingRight: "3%",
+          paddingTop: "3%",
+          paddingBottom: "3%",
         }}
       >
-        <Temperatura_Chart />
-        <Umidade_Chart />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flex: "100%",
+          }}
+        >
+          <Temperatura_Chart />
+          <Umidade_Chart />
+        </div>
+        <Luminosidade_Chart />
+        <hr></hr>
+
+        <Table />
       </div>
-      <Luminosidade_Chart />
-      <Table />
     </div>
   );
 };
