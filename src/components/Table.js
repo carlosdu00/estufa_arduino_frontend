@@ -12,14 +12,14 @@ import { getLeituraData } from "../services/get_leitura";
 export default function MakeTable() {
   const [leitura, setLeitura] = useState([]);
 
-  const buscarleituras = async () => {
+  const buscarLeituras = async () => {
     const data = await getLeituraData();
     setLeitura(data);
   };
   useEffect(() => {
-    buscarleituras();
+    buscarLeituras();
     setInterval(async () => {
-      buscarleituras();
+      buscarLeituras();
     }, 10000); //10 segundos
   }, []);
   // var date;
@@ -68,9 +68,9 @@ export default function MakeTable() {
                 <TableCell> Dia</TableCell>
                 <TableCell> Hora</TableCell>
                 <TableCell> Temperatura do ar</TableCell>
-                <TableCell> Humidade do ar</TableCell>
+                <TableCell> umidade do ar</TableCell>
                 <TableCell> Temperatura do solo</TableCell>
-                <TableCell> Humidade do solo</TableCell>
+                <TableCell> umidade do solo</TableCell>
                 <TableCell> Luminosidade</TableCell>
               </TableRow>
             </TableHead>
@@ -93,9 +93,9 @@ export default function MakeTable() {
                     {Format_date_time(item.data_hora, "HH:mm")}
                   </TableCell>
                   <TableCell> {Math.trunc(item.temperatura_ar)}°C</TableCell>
-                  <TableCell> {Math.trunc(item.humidade_ar)}%</TableCell>
+                  <TableCell> {Math.trunc(item.umidade_ar)}%</TableCell>
                   <TableCell> {Math.trunc(item.temperatura_solo)}°C</TableCell>
-                  <TableCell> {item.humidade_solo <0 ? 0 : Math.trunc(item.humidade_solo)}%</TableCell>
+                  <TableCell> {item.umidade_solo <0 ? 0 : Math.trunc(item.umidade_solo)}%</TableCell>
                   <TableCell> {item.luminosidade}</TableCell>
                 </TableRow>
               ))}

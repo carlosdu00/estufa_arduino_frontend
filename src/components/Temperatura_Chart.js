@@ -29,14 +29,14 @@ ChartJS.register(
 const LineChart = () => {
   const [leitura, setLeitura] = useState([]);
 
-  const buscarleituras= async () => { 
+  const buscarLeituras= async () => { 
     const data = await getLeituraData();
       setLeitura(data)
   }
   useEffect(() => {
-    buscarleituras()
+    buscarLeituras()
     setInterval(async () => {
-      buscarleituras()
+      buscarLeituras()
     }, 10000);//10 segundos
   }, []);
 
