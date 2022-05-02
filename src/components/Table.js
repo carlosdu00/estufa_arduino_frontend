@@ -5,7 +5,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Format_date_time from "../services/Format_date_time";
+import Format_date_time from "../utils/Format_date_time";
 import React, { useState, useEffect } from "react";
 import { getLeituraData } from "../services/get_leitura";
 

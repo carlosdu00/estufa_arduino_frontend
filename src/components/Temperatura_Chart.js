@@ -14,7 +14,7 @@ import { Line } from "react-chartjs-2";
 
 import {getLeituraData} from "../services/get_leitura";
 
-import Format_date_time from "../services/Format_date_time";
+import Format_date_time from "../utils/Format_date_time";
 
 ChartJS.register(
   CategoryScale,
