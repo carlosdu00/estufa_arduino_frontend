@@ -209,7 +209,7 @@ export default function MakeTable() {
               <TableRow>
                 <TablePagination
                   rowsPerPageOptions={[10, 15, 25, { label: "All", value: -1 }]}
-                  colSpan={3}
+                  labelRowsPerPage="Leituras por Página"
                   count={leitura.length}
                   rowsPerPage={rowsPerPage}
                   page={page}
