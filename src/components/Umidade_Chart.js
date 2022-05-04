@@ -81,13 +81,7 @@ const LineChart = () => {
   };
 
   return (
-    <div
-      style={{
-        marginBottom: "3%",
-        display: "flex",
-        flex: "100%",
-      }}
-    >
+    <div>
       <Line data={data} height={300} options={options} />
     </div>
   );

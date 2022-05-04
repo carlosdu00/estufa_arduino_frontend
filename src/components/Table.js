@@ -117,11 +117,7 @@ export default function MakeTable() {
     }, 10000); //10 segundos
   }, []);
   return (
-    <div
-      style={{
-        marginTop: "3%",
-      }}
-    >
+    <div>
       <Paper
         sx={{
           width: "100%",
