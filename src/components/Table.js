@@ -18,6 +18,7 @@ import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
+import "./Table.css";
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -128,7 +129,7 @@ export default function MakeTable() {
       >
         <TableContainer
           sx={{
-            maxHeight: 600,
+            maxHeight: 700,
             "&::-webkit-scrollbar": {
               width: 10,
               height: 10,
@@ -147,18 +148,39 @@ export default function MakeTable() {
             size="small"
             stickyHeader
             aria-label="sticky table"
-            sx={{ maxWidth: 1500 }}
+            sx={{
+              borderCollapse: "collapse",
+              borderSpacing: "0px 0x",
+            }}
           >
             <TableHead>
               <TableRow>
-                {/* <TableCell> ID</TableCell> */}
-                <TableCell> Dia</TableCell>
-                <TableCell> Hora</TableCell>
-                <TableCell> Temperatura do ar</TableCell>
-                <TableCell> Umidade do ar</TableCell>
-                <TableCell> Temperatura do solo</TableCell>
-                <TableCell> Umidade do solo</TableCell>
-                <TableCell> Luminosidade</TableCell>
+                <TableCell>
+                  <p className="desktop">Dia</p> <p className="mobile">🗓️</p>
+                </TableCell>
+                <TableCell>
+                  <p className="desktop">Hora</p> <p className="mobile"> 🕒</p>
+                </TableCell>
+                <TableCell>
+                  <p className="desktop">Temperatura do ar</p>
+                  <p className="mobile"> 🌡️Ar</p>
+                </TableCell>
+                <TableCell>
+                  <p className="desktop">Umidade do ar</p>
+                  <p className="mobile"> 💧Ar</p>
+                </TableCell>
+                <TableCell>
+                  <p className="desktop">Temperatura do solo</p>
+                  <p className="mobile"> 🌡️Solo</p>
+                </TableCell>
+                <TableCell>
+                  <p className="desktop">Umidade do solo</p>
+                  <p className="mobile"> 💧Solo</p>
+                </TableCell>
+                <TableCell>
+                  <p className="desktop">Luminosidade</p>
+                  <p className="mobile"> 💡</p>
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -189,7 +211,6 @@ export default function MakeTable() {
                   <TableCell> {Math.trunc(item.umidade_ar)}%</TableCell>
                   <TableCell> {Math.trunc(item.temperatura_solo)}°C</TableCell>
                   <TableCell>
-                    {" "}
                     {item.umidade_solo < 0 ? 0 : Math.trunc(item.umidade_solo)}%
                   </TableCell>
                   <TableCell> {item.luminosidade}</TableCell>

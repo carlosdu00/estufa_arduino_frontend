@@ -1,0 +1,25 @@
+.mobile {
+  display: block;
+}
+.desktop {
+  display: none;
+}
+
+.Table 
+th{
+    width: 100px;
+}
+td {
+  border: 1px solid rgba(224, 224, 224, 1);
+  align-items: center;
+  width: 100px;
+}
+
+@media only screen and (min-width: 870px) {
+  .mobile {
+    display: none;
+  }
+  .desktop {
+    display: block;
+  }
+}

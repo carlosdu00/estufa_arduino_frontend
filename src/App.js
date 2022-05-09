@@ -4,7 +4,6 @@ import Table from "./components/Table";
 import Luminosidade_Chart from "./components/Luminosidade_Chart";
 import Temperatura_Chart from "./components/Temperatura_Chart";
 import Umidade_Chart from "./components/Umidade_Chart.js";
-import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 
