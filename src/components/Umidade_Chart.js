@@ -59,6 +59,7 @@ const LineChart = () => {
         backgroundColor: ["rgba(54, 162, 235, 1)"],
         borderColor: ["rgba(54, 162, 235, 1)"],
         borderWidth: 1,
+        pointRadius: 2,
       },
       {
         label: `Umidade do solo`,
@@ -66,6 +67,7 @@ const LineChart = () => {
         backgroundColor: ["rgb(57,43,38)"],
         borderColor: ["rgb(57,43,38)"],
         borderWidth: 1,
+        pointRadius: 2,
       },
     ],
   };

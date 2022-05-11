@@ -150,7 +150,6 @@ export default function MakeTable() {
             aria-label="sticky table"
             sx={{
               borderCollapse: "collapse",
-              borderSpacing: "0px 0x",
             }}
           >
             <TableHead>
@@ -193,9 +192,10 @@ export default function MakeTable() {
               ).map((item, index) => (
                 //{date = new Date(item.data_hora.toString())}
                 <TableRow
+                  className="TableRow"
                   style={
                     index % 2
-                      ? { background: "#F6F6F6" }
+                      ? { background: "#e9e9e9" }
                       : { background: "#FFFFFF" }
                   }
                 >
@@ -207,7 +207,9 @@ export default function MakeTable() {
                   <TableCell>
                     {Format_date_time(item.data_hora, "HH:mm")}
                   </TableCell>
-                  <TableCell> {Math.trunc(item.temperatura_ar)}°C</TableCell>
+                  <TableCell className="TableCell">
+                    {Math.trunc(item.temperatura_ar)}°C
+                  </TableCell>
                   <TableCell> {Math.trunc(item.umidade_ar)}%</TableCell>
                   <TableCell> {Math.trunc(item.temperatura_solo)}°C</TableCell>
                   <TableCell>
@@ -226,7 +228,9 @@ export default function MakeTable() {
               <TableRow>
                 <TablePagination
                   rowsPerPageOptions={[10, 15, 25, { label: "All", value: -1 }]}
-                  labelRowsPerPage="Leituras por Página"
+                  labelRowsPerPage={
+                    <div style={{ fontSize: 13 }}>{"Nº de leituras"}</div>
+                  }
                   count={leitura.length}
                   rowsPerPage={rowsPerPage}
                   page={page}
